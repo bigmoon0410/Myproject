@@ -1,3 +1,4 @@
+#coding=utf-8
 """mblog URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,9 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from mainsite.views import homepage
+from mainsite.views import homepage, showpost, about, listing, disp_detail
 
 urlpatterns = [
-	url(r'^$',homepage),
+	url(r'^$',homepage),  #'^'表示字符串开头，'$'表示字符串结尾两个字符接在一起的时候表示有用户浏览网址却没有加上任何字符串的时候就去调用homepage
+    url(r'^post/(\w+)$',showpost),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^about/',about),
+    url(r'^list/$',listing),
+    url(r'^list/([0-9a-zA-Z]+)/$',disp_detail),
+
 ]
